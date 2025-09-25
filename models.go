@@ -1,0 +1,48 @@
+package main
+
+import (
+	"time"
+
+	"github.com/google/uuid"
+	"github.com/thejasms1603/rssagg/internal/database"
+)
+
+type User struct {
+	ID uuid.UUID `json:"id"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	Name string `json:"name"`
+	APIKey string `json:"ApiKey"`
+}
+
+func databaseUserToUser(dbUser database.User) User {
+	return User{
+		ID: dbUser.ID,
+		Name: dbUser.Name,
+		CreatedAt: dbUser.CreatedAt,
+		UpdatedAt: dbUser.UpdatedAt,
+		APIKey: dbUser.ApiKey,
+	}
+}
+
+
+type Feed struct {
+	ID uuid.UUID `json:"id"`
+	Name string `json:"name"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
+	Url string `json:"url"`
+	UserID uuid.UUID `json:"userId"`
+}
+
+
+func databaseFeedToFeed(dbFeed database.Feed) Feed {
+	return Feed{
+		ID: dbFeed.ID,
+		Name: dbFeed.Name,
+		CreatedAt: dbFeed.CreatedAt,
+		UpdatedAt: dbFeed.UpdatedAt,
+		Url: dbFeed.Url,
+		UserID: dbFeed.UserID,
+	}
+}
