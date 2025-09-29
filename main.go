@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"time" 
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
@@ -72,6 +72,7 @@ func main() {
 	v1Router.Post("/feed_follows", apiCfg.middlewareAuth(apiCfg.hanldeFeedFollows))
 	v1Router.Get("/feed_follows", apiCfg.middlewareAuth(apiCfg.handleGetFeedFollow))
 	v1Router.Delete("/feed_follows/{feedFollowId}", apiCfg.middlewareAuth(apiCfg.handleDeleteFeedFollow))
+	v1Router.Get("/posts", apiCfg.middlewareAuth(apiCfg.handleGetPostsForUser))
 	router.Mount("/v1", v1Router)
 
 	srv := &http.Server{
